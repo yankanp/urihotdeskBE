@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: hotdesk-service
+server:
+  port: 8080

@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+  hotdesk-service:
+    image: localhost:5000/hotdesk-service
+    restart: always
+    deploy:
+      replicas: 2
+    depends_on:
+      - db
+    links:
+        - db
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
