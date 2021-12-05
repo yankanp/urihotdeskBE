@@ -5,8 +5,8 @@ services:
   hotdesk-service:
     image: localhost:5000/hotdesk-service
     restart: always
-    deploy:
-      replicas: 2
+    ports:
+      - 8080:8080
     depends_on:
       - db
     links:

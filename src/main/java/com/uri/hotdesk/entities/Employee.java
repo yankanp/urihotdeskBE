@@ -68,4 +68,16 @@ public class Employee {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId='" + employeeId + '\'' +
+                ", email='" + email + '\'' +
+                ", adminName='" + adminName + '\'' +
+                ", registrations=" + registrations +
+                ", defaultRole='" + defaultRole + '\'' +
+                ", enabled=" + enabled +
+                '}';
+    }
 }

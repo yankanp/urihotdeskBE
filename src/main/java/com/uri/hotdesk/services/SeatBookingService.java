@@ -55,8 +55,10 @@ public class SeatBookingService {
 		//TODO get cluster by team and emp
 		seatBooking.setEmployeeTeam(employeeTeamRepository.findByTeam(teamRepository.findById(clusterId).get()).get(0));
 		seatBooking.setCreatedDate(new Date());
-		logger.info("ive");
-		seatBooking.setEmployee(employeeRepository.findByAdminName(empId));
+		logger.info("five");
+		logger.info("emp {}",empId);
+		logger.info("result {}",employeeRepository.findById(empId.split("_")[0]));
+		seatBooking.setEmployee(employeeRepository.findById(empId.split("_")[0]).get());
 		seatBooking.setEndDate(endDate);
 		seatBooking.setModifiedBy(username);
 		logger.info("six");
