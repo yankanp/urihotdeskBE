@@ -42,10 +42,10 @@ public class TeamController {
 	
 	@PostMapping("/team")
 	public Map<String, Object> createTeam(Principal principal,@RequestBody TeamCreationRequest teamCreationRequest){
-		logger.info("VERSION_CONTROLLER {}",principal.getName());
+		logger.info("VERSION_CONTROLLER {} {}",principal.getName(),teamCreationRequest);
 		Map<String, Object> response = new HashMap<>();
 		try {
-			teamService.createTeam(teamCreationRequest.getTeamId(), principal.getName(), teamCreationRequest.getDescription());
+			teamService.createTeam(teamCreationRequest.getTeamId(), principal.getName(), teamCreationRequest.getDescription(),teamCreationRequest.getLocation());
 			response.put(Util.STATUS_VALUE, Util.STATUS_SUCCESS);
 			response.put(Util.MESSAGE_VALUE, "TEAM_CREATED");
 		} catch (Exception e) {

@@ -23,5 +23,13 @@ public class TeamCreationRequest {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "TeamCreationRequest{" +
+				"teamId='" + teamId + '\'' +
+				", description='" + description + '\'' +
+				", location='" + location + '\'' +
+				'}';
+	}
 }

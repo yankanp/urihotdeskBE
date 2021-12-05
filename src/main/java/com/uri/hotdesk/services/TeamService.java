@@ -6,6 +6,7 @@ import com.uri.hotdesk.entities.EmployeeTeam;
 import com.uri.hotdesk.entities.Team;
 import com.uri.hotdesk.repositories.EmployeeRepository;
 import com.uri.hotdesk.repositories.EmployeeTeamRepository;
+import com.uri.hotdesk.repositories.LocationRepository;
 import com.uri.hotdesk.repositories.TeamRepository;
 import com.uri.hotdesk.responses.AllTeamsResponse;
 import org.slf4j.Logger;
@@ -24,6 +25,9 @@ public class TeamService {
 	private TeamRepository teamRepository;
 	private EmployeeRepository employeeRepository;
 	private EmployeeTeamRepository employeeTeamrepository;
+
+	@Autowired
+	private LocationRepository locationRepository;
 	@Autowired
 	public TeamService(TeamRepository teamRepository,EmployeeRepository employeeRepository,
 			EmployeeTeamRepository employeeTeamRepository) {
@@ -33,14 +37,16 @@ public class TeamService {
 		this.employeeTeamrepository=employeeTeamRepository;
 	}
 	
-	public void createTeam(String teamName,String username,String description) {
+	public void createTeam(String teamName,String username,String description,String locationName) {
+		logger.info("Location ID {}",locationName);
 		Team teams=new Team();
 		teams.setCreatedDate(new Date());
 		teams.setDescription(description);
 		teams.setModifiedBy(username);
 		teams.setTeamId(teamName);
 		teams.setTeamName(teamName);
-		
+		logger.info("Location is null {}",locationRepository.findById(locationName.trim()));
+		teams.setLocation(locationRepository.findById(locationName.trim()).get());
 		teamRepository.save(teams);
 	}
 	
@@ -68,7 +74,7 @@ public class TeamService {
 			teamsResponse.setModifiedBy(team.getModifiedBy());
 			teamsResponse.setTeamId(team.getTeamId());
 			teamsResponse.setTeamName(team.getTeamName());
-			
+			teamsResponse.setLocation(team.getLocation().getLocationId());
 			teamList.add(teamsResponse);
 		}
 		return teamList;

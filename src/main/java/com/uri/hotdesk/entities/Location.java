@@ -63,4 +63,16 @@ public class Location {
 	public void setTotSeatNumber(int totSeatNumber) {
 		this.totSeatNumber = totSeatNumber;
 	}
+
+	@Override
+	public String toString() {
+		return "Location{" +
+				"locationId='" + locationId + '\'' +
+				", locationName='" + locationName + '\'' +
+				", description='" + description + '\'' +
+				", latitude='" + latitude + '\'' +
+				", longitude='" + longitude + '\'' +
+				", totSeatNumber=" + totSeatNumber +
+				'}';
+	}
 }

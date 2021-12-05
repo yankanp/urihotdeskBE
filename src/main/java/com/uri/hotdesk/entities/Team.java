@@ -18,7 +18,8 @@ public class Team {
 	
 	@OneToMany(mappedBy = "team")
     private Set<EmployeeTeam> registrations;
-	
+	@ManyToOne
+	private Location location;
 	public String getTeamId() {
 		return teamId;
 	}
@@ -56,5 +57,13 @@ public class Team {
 
 	public void setRegistrations(Set<EmployeeTeam> registrations) {
 		this.registrations = registrations;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 }

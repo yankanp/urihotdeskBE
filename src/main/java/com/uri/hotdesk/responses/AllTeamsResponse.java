@@ -9,6 +9,7 @@ public class AllTeamsResponse {
 	private Date createdDate;
 	private String description;
 	private String modifiedBy;
+	private String location;
 	public String getTeamId() {
 		return teamId;
 	}
@@ -38,5 +39,13 @@ public class AllTeamsResponse {
 	}
 	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 }
