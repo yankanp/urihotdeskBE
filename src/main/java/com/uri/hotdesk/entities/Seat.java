@@ -44,4 +44,14 @@ public class Seat {
 	public void setLocation(Location location) {
 		this.location = location;
 	}
+
+	@Override
+	public String toString() {
+		return "Seat{" +
+				"seatId=" + seatId +
+				", seatNo='" + seatNo + '\'' +
+				", createdDate=" + createdDate +
+				", location=" + location +
+				'}';
+	}
 }

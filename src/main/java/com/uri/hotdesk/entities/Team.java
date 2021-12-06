@@ -66,4 +66,17 @@ public class Team {
 	public void setLocation(Location location) {
 		this.location = location;
 	}
+
+	@Override
+	public String toString() {
+		return "Team{" +
+				"teamId='" + teamId + '\'' +
+				", teamName='" + teamName + '\'' +
+				", createdDate=" + createdDate +
+				", description='" + description + '\'' +
+				", modifiedBy='" + modifiedBy + '\'' +
+				", registrations=" + registrations +
+				", location=" + location +
+				'}';
+	}
 }

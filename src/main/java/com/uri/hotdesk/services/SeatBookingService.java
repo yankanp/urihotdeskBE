@@ -1,9 +1,7 @@
 package com.uri.hotdesk.services;
 
 
-import com.uri.hotdesk.entities.Seat;
-import com.uri.hotdesk.entities.SeatBooking;
-import com.uri.hotdesk.entities.TeamSeats;
+import com.uri.hotdesk.entities.*;
 import com.uri.hotdesk.exceptions.SeatAlreadyBookedException;
 import com.uri.hotdesk.exceptions.SeatDoesNotBelongToTeamException;
 import com.uri.hotdesk.repositories.*;
@@ -33,6 +31,8 @@ public class SeatBookingService {
 	@Autowired
 	private TeamRepository teamRepository;
 	@Autowired
+	private LocationRepository locationRepository;
+	@Autowired
 	public SeatBookingService(SeatBookingRepository seatBookingRepository,
 			TeamSeatRepository teamSeatRepository) {
 		logger=LoggerFactory.getLogger(this.getClass());
@@ -42,7 +42,14 @@ public class SeatBookingService {
 	
 	public void bookseat(String clusterId, int seatNo,String empId,Date startDate,Date endDate,String username) throws SeatAlreadyBookedException, SeatDoesNotBelongToTeamException {
 		logger.info("One");
-		if(teamSeatRepository.findSeatAllocated(startDate, endDate, seatNo,clusterId).isEmpty()) {
+		Team team=teamRepository.findById(clusterId).get();
+		logger.info("TEAM {}",team);
+		Location location=locationRepository.findById(team.getLocation().getLocationId()).get();
+		logger.info("Location {}",location);
+		Seat seat=seatRepository.findByLocationAndSeatNo(location,String.valueOf(seatNo));
+		logger.info("Seat {}",seat);
+		logger.info("Details {} {} {} {}", Integer.valueOf(seat.getSeatId()),clusterId,startDate,endDate);
+		if(teamSeatRepository.findSeatAllocated(startDate, endDate, Integer.valueOf(seat.getSeatId()),clusterId).isEmpty()) {
 			throw new SeatDoesNotBelongToTeamException();
 		}
 		logger.info("two");

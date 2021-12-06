@@ -15,4 +15,5 @@ public interface SeatRepository extends JpaRepository<Seat, Integer>{
     List<Seat> findAllByLocation(Location location);
 
     Seat findByLocationAndSeatNo(Location location,String seatNo);
+
 }
