@@ -69,7 +69,7 @@ public class SeatBookingService {
 		seatBooking.setEndDate(endDate);
 		seatBooking.setModifiedBy(username);
 		logger.info("six");
-		seatBooking.setSeat(seatRepository.findById(seatNo).get());
+		seatBooking.setSeat(seatRepository.findById(seat.getSeatId()).get());
 		seatBooking.setStartDate(startDate);
 		logger.info("seven");
 		seatBookingRepository.save(seatBooking);
